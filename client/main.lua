@@ -44,10 +44,12 @@ for k, v in pairs(availableKeys) do
                     Wait(1000)
                     keyPressed = false
                 else
-                    QBCore.Functions.Notify('There is still nothing ['..v[2]..'] bound, /binds to bind a command', 'primary', 4000)
+                    --QBCore.Functions.Notify('There is still nothing ['..v[2]..'] bound, /binds to bind a command', 'primary', 4000)
+                    exports['okokNotify']:Alert('Nothing Bound', 'There is still nothing ['..v[2]..'] bound, /binds to bind a command', 4000, 'info')
                 end
             else
-                QBCore.Functions.Notify('You have not bound any commands, /binds to bind a command', 'primary', 4000)
+                --QBCore.Functions.Notify('You have not bound any commands, /binds to bind a command', 'primary', 4000)
+                exports['okokNotify']:Alert('Nothing Bound', 'You have not bound any commands, /binds to bind a command', 4000, 'info')
             end
         end
     end, false)
@@ -64,7 +66,8 @@ RegisterNUICallback('save', function(data, cb)
         ["F9"]  = {["command"] = data.keyData["F9"][1],  ["argument"] = data.keyData["F9"][2]},
         ["F10"] = {["command"] = data.keyData["F10"][1], ["argument"] = data.keyData["F10"][2]},
     }
-    QBCore.Functions.Notify('Command bindings have been saved!', 'success')
+    --QBCore.Functions.Notify('Command bindings have been saved!', 'success')
+    exports['okokNotify']:Alert('Binding Saved', 'Command bindings have been saved!', 2500, 'info')
     TriggerServerEvent('qb-commandbinding:server:setKeyMeta', keyData)
     cb('ok')
 end)
